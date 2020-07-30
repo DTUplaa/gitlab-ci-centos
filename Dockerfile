@@ -39,6 +39,6 @@ RUN /bin/bash -c "source activate py37 \
   && pip install --upgrade pip \
   && pip install Cython \
   && pip install coverage \
-  && pip install mpi4py
+  && pip install mpi4py"
 
 RUN echo 'ulimit -s unlimited' >> .bashrc
