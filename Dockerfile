@@ -31,6 +31,14 @@ RUN wget --quiet \
     rm Miniconda-latest-Linux-x86_64.sh && \
     chmod -R a+rx $CONDA_ENV_PATH
 RUN conda update --quiet --yes conda \
-  && conda create -y -n py35 python=3.5 \
-  && /bin/bash -c "source activate py35 \
-  && conda install pip numpy scipy xarray nose"
+  && conda create -y -n py37 python=3.7 \
+  && /bin/bash -c "source activate py37 \
+  && conda install pip numpy scipy xarray nose hdf5"
+
+RUN /bin/bash -c "source activate py37 \
+  && pip install --upgrade pip \
+  && pip install Cython \
+  && pip install coverage \
+  && pip install mpi4py
+
+RUN echo 'ulimit -s unlimited' >> .bashrc
